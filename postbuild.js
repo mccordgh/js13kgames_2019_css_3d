@@ -25,9 +25,17 @@ archive.on('error', function(err) {
 });
 
 archive.pipe(output);
+
 archive.append(
   fs.createReadStream('./dist/index.html'), {
     name: 'index.html'
-  })
+  }
+)
+
+archive.append(
+  fs.createReadStream('./dist/src/res/all.png'), {
+    name: 'src/res/all.png'
+  }
+)
 
 archive.finalize()

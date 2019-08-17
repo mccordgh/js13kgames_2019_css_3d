@@ -1,7 +1,92 @@
 <html>
-    <body style="background-color:black;">
-    <div class="wrapper" style="border:1px solid white;width:768px;height:768px;position:fixed;top:calc(50% - 384px);left:calc(50% - 384px);padding:0;cursor:none">
-        <canvas id="canvas"></canvas>
-    </div>
+    <style>
+        html, body, #main {
+            height: 100%;
+            width: 100%;
+        }
+
+        div {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        #main {
+            flex: 1;
+            -moz-perspective: 1000px;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+        }
+
+        div[id^="cube-"] {
+            height: 20rem;
+            -moz-transform: rotateX(30deg) rotateY(0deg) rotateZ(45deg);;
+            -webkit-transform: rotateX(30deg) rotateY(0deg) rotateZ(45deg);;
+            transform: rotateX(30deg) rotateY(0deg) rotateZ(45deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -moz-transition: all 3s;
+            -webkit-transition: all 3s;
+            transition: all 3s;
+            width: 20rem;
+        }
+
+        div[id^="cube-"] div {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        div[id^="cube-front"] {
+            background-color: red;
+            -moz-transform: translateZ(10rem);
+            -webkit-transform: translateZ(10rem);
+            transform: translateZ(10rem);
+        }
+
+        div[id^="cube-back"] {
+            background-color: blue;
+            -moz-transform: translateZ(-10rem) rotateY(180deg);
+            -webkit-transform: translateZ(-10rem) rotateY(180deg);
+            transform: translateZ(-10rem) rotateY(180deg);
+        }
+
+        div[id^="cube-top"] {
+            background-color: yellow;
+            -moz-transform: translateY(-10rem) rotateX(90deg);
+            -webkit-transform: translateY(-10rem) rotateX(90deg);
+            transform: translateY(-10rem) rotateX(90deg);
+        }
+
+        div[id^="cube-bottom"] {
+            background-color: green;
+            -moz-transform: translateY(10rem) rotateX(-90deg);
+            -webkit-transform: translateY(10rem) rotateX(-90deg);
+            transform: translateY(10rem) rotateX(-90deg);
+
+        }
+
+        div[id^="cube-left"] {
+            background-color: purple;
+            -moz-transform: translateX(-10rem) rotateY(-90deg);
+            -webkit-transform: translateX(-10rem) rotateY(-90deg);
+            transform: translateX(-10rem) rotateY(-90deg);
+        }
+
+        div[id^="cube-right"] {
+            background-color: orange;
+            -moz-transform: translateX(10rem) rotateY(90deg);
+            -webkit-transform: translateX(10rem) rotateY(90deg);
+            transform: translateX(10rem) rotateY(90deg);
+        }
+
+        button[id^="button-"] {
+            width: 5rem;
+            height: 5rem;
+        }
+    </style>
+
+    <body>
+        <div id="main"></div>
     </body>
 </html>

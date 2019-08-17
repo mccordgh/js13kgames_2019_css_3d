@@ -39,9 +39,9 @@ let config = {
   plugins: [
     new HtmlWebpackPlugin(htmlConfig),
     new HtmlWebpackInlineSourcePlugin(),
-    new CopyWebpackPlugin([
-      { from: 'src/res/all.png', to: 'src/res/all.png' },
-      ])
+    // new CopyWebpackPlugin([
+    //   { from: 'src/res/all.png', to: 'src/res/all.png' },
+    //   ])
   ],
   stats: 'minimal',
   devServer: {
@@ -54,11 +54,11 @@ if(!isProduction) {
 } else {
   config.plugins = config.plugins.concat([
 		new CompressionPlugin({
-			asset: "[path].gz[query]",
+			filename: "[path].gz[query]",
 			algorithm: "gzip",
 			test: /\.js$|\.html$/,
-			threshold: 10240,
-			minRatio: 0.8
+			threshold: 0,
+			minRatio: 1
 		})
   ])
 }
