@@ -1,6 +1,6 @@
 var main = document.querySelector('#main');
 
-var makeDiv = (index, type) => {
+function makeDiv(index, type) {
     var el = document.createElement('div');
 
     el.id = `cube-${type}-${index}`;
@@ -8,7 +8,7 @@ var makeDiv = (index, type) => {
     return el;
 }
 
-var makeSide = (parent, index, type) => {
+function makeSide(parent, index, type) {
     var el = makeDiv(index, type);
     var button = makeButton(index, type)
 
@@ -18,7 +18,7 @@ var makeSide = (parent, index, type) => {
     return el;
 }
 
-var makeButton = (index, type) => {
+function makeButton(index, type) {
     var button = document.createElement('button');
 
     button.id = `button-${type}-${index}`;
@@ -27,11 +27,18 @@ var makeButton = (index, type) => {
     return button;
 }
 
-var makeCubes = (num) => {
+function makeCubes(num) {
     var cubes = [];
 
     for (i = 0; i < num; i++) {
         var parent = makeDiv(i, 'parent');
+        parent.rotations = {
+            x: 30,
+            y: 0,
+            z: 45,
+        };
+
+        parent.style.transform = `rotateX(${parent.rotations.x}deg) rotateY(${parent.rotations.y}deg) rotateZ(${parent.rotations.z}deg)`;
 
         var cube = {
             parent,
@@ -46,11 +53,68 @@ var makeCubes = (num) => {
         cubes.push(cube);
     }
 
+    cubes.forEach(cube => {
+        main.appendChild(cube.parent);
+    });
+
     return cubes;
 }
 
-var cubes = makeCubes(1);
+function handleKeyUp(event) {
+    // W = 87
+    // A = 65
+    // S = 83
+    // D = 68
+    // Right Arrow = 39
+    // Left Arrow = 37
 
-cubes.forEach(cube => {
-    main.appendChild(cube.parent);
-});
+    // Z = 90
+    // X = 88
+    // C = 67
+
+    // console.log(event.keyCode);
+
+    var parent = cubes[0].parent;
+
+    // var amt = 10;
+
+    var codes = {
+        // 90() { parent.rotations.z -= amt; },
+        // 88() { parent.rotations.x -= amt; },
+        // 67() { parent.rotations.y -= amt; },
+        // 65() { parent.rotations.z += amt; },
+        // 83() { parent.rotations.x += amt; },
+        // 68() { parent.rotations.y += amt; },
+        39() {
+            // Rotate right
+
+            parent.rotations.x -= 90;
+            parent.rotations.y -= 45;
+            parent.rotations.z += 45;
+            parent.style.transform = `rotateX(${parent.rotations.x}deg) rotateY(${parent.rotations.y}deg) rotateZ(${parent.rotations.z}deg)`;
+        },
+        37() {
+            // Rotate left
+
+            parent.rotations.x += 90;
+            parent.rotations.y += 45;
+            parent.rotations.z -= 45;
+            parent.style.transform = `rotateX(${parent.rotations.x}deg) rotateY(${parent.rotations.y}deg) rotateZ(${parent.rotations.z}deg)`;
+        }
+    }
+
+    if (codes[event.keyCode]) {
+        codes[event.keyCode]();
+    }
+
+    parent.style.transform = `rotateX(${parent.rotations.x}deg) rotateY(${parent.rotations.y}deg) rotateZ(${parent.rotations.z}deg)`;
+
+    // console.log(`X(${parent.rotations.x}) Y(${parent.rotations.y}) Z(${parent.rotations.z})`)
+}
+
+function setupListeners() {
+    document.addEventListener('keyup', handleKeyUp);
+}
+
+setupListeners();
+var cubes = makeCubes(1);

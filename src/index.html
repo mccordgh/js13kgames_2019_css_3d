@@ -18,11 +18,8 @@
             perspective: 1000px;
         }
 
-        div[id^="cube-"] {
+        div[id^="cube-parent-"] {
             height: 20rem;
-            -moz-transform: rotateX(30deg) rotateY(0deg) rotateZ(45deg);;
-            -webkit-transform: rotateX(30deg) rotateY(0deg) rotateZ(45deg);;
-            transform: rotateX(30deg) rotateY(0deg) rotateZ(45deg);
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
             -moz-transition: all 3s;
@@ -39,44 +36,32 @@
 
         div[id^="cube-front"] {
             background-color: red;
-            -moz-transform: translateZ(10rem);
-            -webkit-transform: translateZ(10rem);
             transform: translateZ(10rem);
         }
 
         div[id^="cube-back"] {
             background-color: blue;
-            -moz-transform: translateZ(-10rem) rotateY(180deg);
-            -webkit-transform: translateZ(-10rem) rotateY(180deg);
             transform: translateZ(-10rem) rotateY(180deg);
         }
 
         div[id^="cube-top"] {
             background-color: yellow;
-            -moz-transform: translateY(-10rem) rotateX(90deg);
-            -webkit-transform: translateY(-10rem) rotateX(90deg);
             transform: translateY(-10rem) rotateX(90deg);
         }
 
         div[id^="cube-bottom"] {
             background-color: green;
-            -moz-transform: translateY(10rem) rotateX(-90deg);
-            -webkit-transform: translateY(10rem) rotateX(-90deg);
             transform: translateY(10rem) rotateX(-90deg);
 
         }
 
         div[id^="cube-left"] {
             background-color: purple;
-            -moz-transform: translateX(-10rem) rotateY(-90deg);
-            -webkit-transform: translateX(-10rem) rotateY(-90deg);
             transform: translateX(-10rem) rotateY(-90deg);
         }
 
         div[id^="cube-right"] {
             background-color: orange;
-            -moz-transform: translateX(10rem) rotateY(90deg);
-            -webkit-transform: translateX(10rem) rotateY(90deg);
             transform: translateX(10rem) rotateY(90deg);
         }
 
